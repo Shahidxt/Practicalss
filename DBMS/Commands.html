@@ -1,0 +1,45 @@
+how to create database:
+<br>
+create table EMP(
+Empno int auto_increment key,
+Ename varchar(35),
+Job varchar(20),
+Mgr varchar(35),
+Joindate datetime default now(),
+Salary int,
+Comm varchar(50),
+Deptno int);
+<br>
+
+insert into emp values(3,'Rahul Gosa','Salesman',
+'Mgr',now(),200,'department', 3);
+<br>
+<!-- Display the list of employee excluding job title as ‘Salesman’ -->
+select * from emp where Job = "salesman";
+
+<br>
+<!-- Display the list of employee excluding job title as ‘Salesman’ -->
+select avg(Salary) from emp;
+
+<!-- extra -->
+select sum(Salary) from emp;
+
+<!-- Change the name of employee ‘Rahul Gosai’ to ‘Jigar Dave’ -->
+update emp set Ename = "Jigar Dave" where Ename = "Rahul Gosa";
+
+<!-- Display the employee details whose name starts with ‘A’ -->
+select * from emp where Ename LIKE 'A%';
+
+<!-- Display annual salary of all employees. -->
+select Ename , 12*Salary from emp;
+<br>
+<!-- Explain the procedure for Creating Views. With Suitable Example      -->
+
+Views in SQL are considered as a virtual table. A view also contains rows and columns.
+To create the view, we can select the fields from one or more tables present in the database.
+A view can either have specific rows based on certain condition or all the rows of a table.
+A view can be created using the CREATE VIEW statement. We can create a view from a single table or multiple tables.
+SELECT * FROM DetailsView;  
+DROP VIEW view_name;
+create view viewname as select * from emp where Salary >200;
+
