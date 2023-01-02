@@ -39,7 +39,65 @@ Views in SQL are considered as a virtual table. A view also contains rows and co
 To create the view, we can select the fields from one or more tables present in the database.
 A view can either have specific rows based on certain condition or all the rows of a table.
 A view can be created using the CREATE VIEW statement. We can create a view from a single table or multiple tables.
-SELECT * FROM DetailsView;  
+SELECT * FROM DetailsView;
 DROP VIEW view_name;
 create view viewname as select * from emp where Salary >200;
 
+<br>
+<!-- Que 3.Consider the following structure 
+Student_info(Student_ID,sname,Course_name,City) 
+Course(c_code,title,HOD) -->
+
+
+create table student_info(student_id int,
+sname varchar(50),
+Course_name varchar(30),
+city varchar(20));
+
+insert into student_info values(1, 'shahid', 'bca', 'mumbai');
+insert into student_info values(3, 'mehmood', 'msc', 'mumbai');
+
+<!-- Add two attributes to table Student_info as “Phone Number”and  
+ “Email Address”  -->
+alter table student_info add Phone_Number varchar(15);
+alter table student_info add Email varchar(100);
+
+<!-- Rename Attibutes Title to Course_name for table Course.                           -->
+
+alter table Course rename column title to Course_name;
+
+<!-- .ExplainPrimary Key Constraint with suitable example.    -->
+The PRIMARY KEY constraint uniquely identifies each record in a table. Primary keys must contain UNIQUE values, and
+cannot contain NULL values. A table can have only ONE primary key; and in the table, this primary key can consist of
+single or multiple columns (fields).
+<!-- <br> -->
+CREATE TABLE Persons (
+ID int NOT NULL,
+LastName varchar(255) NOT NULL,
+FirstName varchar(255),
+Age int,
+PRIMARY KEY (ID)
+);
+
+
+
+<!-- Explain procedure for creating Index with example. -->
+
+An index is a data structure that allows us to add indexes in the existing table. It enables you to improve the faster
+retrieval of records on a database table. It creates an entry for each value of the indexed columns. We use it to
+quickly find the record without searching each row in a database table whenever the table is accessed. We can create an
+index by using one or more columns of the table for efficient access to the records.
+<!-- ,:<: -->
+create index indexname on Students(name);
+show indexes from student_info;
+<!-- -->
+Generally, we create an index at the time of table creation in the database. The following statement creates a table
+with an index that contains two columns col2 and col3.
+<!-- -->
+mysql> CREATE TABLE t_index(  
+   col1 INT PRIMARY KEY,  
+   col2 INT NOT NULL,  
+   col3 INT NOT NULL,  
+   col4 VARCHAR(20),  
+   INDEX (col2,col3)   
+);  
