@@ -81,8 +81,8 @@ PRIMARY KEY (ID)
 
 
 
-<!-- Explain procedure for creating Index with example. -->
 
+<!-- Explain procedure for creating Index with example. -->
 An index is a data structure that allows us to add indexes in the existing table. It enables you to improve the faster
 retrieval of records on a database table. It creates an entry for each value of the indexed columns. We use it to
 quickly find the record without searching each row in a database table whenever the table is accessed. We can create an
@@ -94,10 +94,232 @@ show indexes from student_info;
 Generally, we create an index at the time of table creation in the database. The following statement creates a table
 with an index that contains two columns col2 and col3.
 <!-- -->
-mysql> CREATE TABLE t_index(  
-   col1 INT PRIMARY KEY,  
-   col2 INT NOT NULL,  
-   col3 INT NOT NULL,  
-   col4 VARCHAR(20),  
-   INDEX (col2,col3)   
-);  
+mysql> CREATE TABLE t_index(
+col1 INT PRIMARY KEY,
+col2 INT NOT NULL,
+col3 INT NOT NULL,
+col4 VARCHAR(20),
+INDEX (col2,col3)
+);
+
+
+<!-- <div class=""></div> -->
+
+<!-- A referential integrity constraint is also known as foreign key constraint. A foreign key is a key whose values are derived from the Primary key of another table.Explain Referential Integrity Constraint.     -->
+
+The table from which the values are derived is known as Master or Referenced Table and the Table in which values are
+inserted accordingly is known as Child or Referencing Table, In other words, we can say that the table containing the
+foreign key is called the child table, and the table containing the Primary key/candidate key is called the referenced
+or parent table. When we talk about the database relational model, the candidate key can be defined as a set of
+attribute which can have zero or more attributes.
+
+<!--  -->
+The syntax of the Master Table or Referenced table is:
+CREATE TABLE Student (Roll int PRIMARY KEY, Name varchar(25) , Course varchar(10) );
+
+<!--  -->
+The syntax of Child Table or Referencing table is:
+CREATE TABLE Subject (Roll int references Student, SubCode int, SubName varchar(10) );
+
+<!-- Demostrate use of ‘&’Operator by inserting 2 record in the table  -->
+select * from student_info where name = 'shahid' and student_id = 1;
+select * fromstudent_info where Course_name = 'bca' and student_id = 1;
+
+<!--  -->
+<!-- Explain procedure for creating Snapshots with example.  -->
+snapshot is a recent copy of the table from the database or a subset of rows/columns of a table. The SQL statement that
+creates and subsequently maintains a snapshot normally reads data from the database residing server. A snapshot is
+created on the destination system with the create snapshot SQL command. The remote table is immediately defined and
+populated from the master table.
+<!--  -->
+These are used to dynamically replicate data between distributed databases. Two types of snapshots are available.
+Simple snapshots
+Complex snapshots
+<!--  -->
+Simple snapshot :
+In simple snapshot, each row is based on a single row in a single remote table. This consists of either a single table
+or a simple SELECT of rows from a single table.
+
+<!--  -->
+CREATE SNAPSHOT emp_snap
+as select * from emp;
+<!--  -->
+Complex snapshot :
+In complex snapshot, a row may be based on more than one row in a remote table via GROUP BY operation or result of
+Multi-Table Join. This consists of joined tables, views, or grouped and complex SELECT statement queries.
+
+Example –
+
+CREATE SNAPSHOT sampleSnps1
+AS SELECT student.rollno, student.name
+FROM student
+UNION ALL
+SELECT new_student.rollno, new_student.name
+FROM new_student;
+
+<!--  -->
+<!-- .Explain IN and NOTIN operators with example.   -->
+SQL IN and NOT IN operators used to specify multiple values in a WHERE clause.
+SQL IN condition used to allow multiple value in a WHERE clause condition. SQL IN condition you can use when you need to
+use multiple OR condition.
+SQL IN condition allow only specific value in INSERT, UPDATE, DELETE, SELECT statement.
+<!--  -->
+select * from student_info where name not in ('shahid');
+<!--  -->
+select * from student_info where name in ('shahid');
+<!--  -->
+<!-- Explain any two String functions with example.   -->
+answers in image.
+<img src="https://static.javatpoint.com/sqlserver/images/sql-server-string-functions1.png">
+
+
+<!--  -->
+<!-- Explain any four Arithmetic functions with example.    -->
+Mathematical functions are very important in SQL to implement different mathematical concepts in queries.
+
+Some of the the major mathematical functions in SQL are as follows −
+
+ABS(X)
+This function returns the absolute value of X. For example −
+
+Select abs(-6);
+This returns 6.
+
+MOD(X,Y)
+The variable X is divided by Y and their remainder is returned. For example −
+
+Select mod(9,5);
+This returns 4.
+
+SIGN(X)
+This method returns 1 if X is positive, -1 if it is negative and 0 if the value of X is 0. For example −
+
+Select sign(10);
+This returns 1.
+
+FLOOR(X)
+This returns the largest integer value that is either less than X or equal to it. For example −
+
+Select floor(5.7);
+This returns 5.
+
+CEIL(X)
+This returns the smallest integer value that is either more than X or equal to it. For example −
+
+Select ceil(5.7);
+This returns 6.
+
+POWER(X,Y)
+This function returns the value of x raised to the power of Y For example −
+
+Select power(2,5);
+This returns 32.
+
+ROUND(X)
+This function returns the value of X rounded off to the whole integer that is nearest to it. For example −
+
+Select round(5.7);
+This returns 6.
+
+SQRT(X)
+This function returns the square root of X. For example −
+
+Select sqrt(9);
+This returns 3.
+
+ASIN(X)
+This function accepts a Sin value as the input and returns the angle in radians. For example −
+
+Select asin(0);
+This returns 0.
+
+ACOS(X)
+This function accepts a Cos value as the input and returns the angle in radians. For example −
+
+Select acos(1);
+This returns 0.
+
+ATAN(X)
+This function accepts a Tan value as the input and returns the angle in radians. For example −
+
+Select atan(0);
+This returns 0.
+
+SIN(X)
+This function accepts an angle in radians as its parameter and returns its Sine value. For example −
+
+Select sin(0);
+This returns 0.
+
+COS(X)
+This function accepts an angle in radians as its parameter and returns its Cosine value. For example −
+
+Select cos(0);
+This returns 1.
+
+TAN(X)
+This function accepts an angle in radians as its parameter and returns its Tan value. For example −
+
+Select tan(0);
+This returns 0.
+
+
+<br>
+<!-- .List and explain any four Arithmeticoperators with example. -->
+SQL Arithmetic Operators
+In Structured Query Language, the arithmetic operators are used to perform mathematical operations on the numerical
+values stored in the database tables.
+We can use these operators with the SELECT statement in SQL. We can also use the WHERE clause in the SELECT statement
+for performing operations on particular rows.
+
+These types of operators are used between two numerical operands for performing addition, subtraction, multiplication,
+and division operations.
+
+The arithmetic operators in SQL are categorized into the following five types:
+
+SQL Addition Operator (+)
+SQL Subtraction Operator (-)
+SQL Multiplication Operator (*)
+SQL Division Operator (/)
+SQL Modulus Operator (%)
+
+SELECT Column_Name_1 Addition_Operator Column_Name2 FROM Table_Name;
+SELECT Column_Name_1 Addition_Operator Column_Name2 FROM Table_Name WHERE Condition;
+
+CREATE TABLE Employee
+(
+Employee_ID INT AUTO_INCREMENT PRIMARY KEY,
+Emp_Name VARCHAR (50),
+Emp_City VARCHAR (20),
+Emp_Salary INT NOT NULL,
+Emp_Bonus INT NOT NULL
+) ;
+
+<!--  -->
+
+<!-- What is the use of BetweenClause? Explain with example. -->
+The SQL BETWEEN condition allows you to easily test if an expression is within a range of values (inclusive). The values
+can be text, date, or numbers. It can be used in a SELECT, INSERT, UPDATE, or DELETE statement. The SQL BETWEEN
+Condition will return the records where expression is within the range of value1 and value2.
+<!--  -->
+
+SELECT *
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+<!--  -->
+<!-- Explain IN and NOTIN operators with example -->
+
+
+SQL IN and NOT IN operators used to specify multiple values in a WHERE clause.
+
+SQL IN condition used to allow multiple value in a WHERE clause condition. SQL IN condition you can use when you need to use multiple OR condition.
+
+SQL IN condition allow only specific value in INSERT, UPDATE, DELETE, SELECT statement.
+
+Syntax
+
+WHERE column_name IN (value1, value2, ...);
+SELECT * FROM users_info WHERE name NOT LIKE 'Be%';
+
+<!--  -->
