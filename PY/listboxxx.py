@@ -1,0 +1,16 @@
+import tkinter as tk
+
+window = tk.Tk()
+window.geometry("250x200")
+tk.Label(window, text='Choose Your Favorite ?').pack()
+listbox = tk.Listbox(window)
+listbox.insert(1,"Python")
+listbox.insert(2,"PHP")
+listbox.insert(3,"Java")
+listbox.insert(4,"Javascript")
+listbox.insert(5,"C")
+listbox.insert(6,"C++")
+listbox.insert(7,"Ruby")
+listbox.insert(8,"Swift")
+listbox.pack()
+window.mainloop()

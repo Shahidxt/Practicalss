@@ -28,4 +28,4 @@ def CompundInterest():
     return InitalA*((1+rate/100)**time-1)
 
 
-print(CompundInterest())
+print(SimpleInterest())
