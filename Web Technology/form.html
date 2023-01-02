@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Form</title>
+</head>
+
+<style>
+    .formelement>label {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    .formelement>input {
+        font-size: 1rem;
+        padding: 0.2rem 0.4rem;
+        font-weight: bold;
+        border-radius: 0.3;
+    }
+
+    #submit {
+        margin: 0.4rem 0;
+        font-weight: bold;
+        padding: 0.3rem 0.7rem;
+        border-radius: 0.2rem;
+        cursor: pointer;
+    }
+
+    body {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+    }
+</style>
+
+<body>
+    <div>
+        <h2>Signup</h3>
+    </div>
+    <form method="GET" action="" id="form">
+        <div class="formelement">
+            <label for="fname"> *Enter Your First Name: </label>
+            <input type="text" id="fname" name="fname" required>
+        </div>
+        <div class="formelement">
+            <label for="lname"> *Enter Your Last Name: </label>
+            <input type="text" id="lname" name="lname" required>
+        </div>
+        <div class="formelement">
+            <label for="email"> *Enter Your Email: </label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="formelement">
+            <label for="password"> *Enter Password: </label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="formelement">
+            <label for="password2"> *Enter Confirm Password: </label>
+            <input type="password" id="password2" name="password2" required>
+        </div>
+        <button id="submit" type="submit"> Submit</button>
+    </form>
+    <div id="output"></div>
+</body>
+<script>
+    let fname, lname, email, password, password2;
+    let form = document.getElementById("form");
+    let submit = document.getElementById("submit");
+
+    submit.addEventListener("click", (e) => {
+
+        const formData = new FormData(form);
+        const output = document.getElementById('output');
+        output.innerHTML = "";
+        for (const [key, value] of formData) {
+            output.innerHTML += `${key}: ${value}`;
+        }
+    })
+</script>
+
+</html>
